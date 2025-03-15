@@ -19,12 +19,12 @@ python -m venv .venv
 #### instalação de dependências
 Windows:
 ```bash
-.venv\bin\python -m pip install Flask-SQLAlchemy
+.venv\bin\python -m pip install Flask-SQLAlchemy pymysql
 ```
 
 Linux ou Mac:
 ```bash
-.venv/bin/python -m pip install Flask-SQLAlchemy
+.venv/bin/python -m pip install Flask-SQLAlchemy pymysql
 ```
 ---
 ### Rodando ambiente de desenvolvimento
