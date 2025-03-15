@@ -2,8 +2,9 @@
 
 ### Instruções de instalação
 
-#### Criação de ambiente virtual e instalação de dependências 
-
+###  Criação de ambiente virtual e instalação de dependências 
+---
+#### Clonagem de repositório
 ```bash
 git clone https://github.com/JuniorJose-git/sistema-academico-web.git
 cd sistema-academico-web
@@ -14,7 +15,7 @@ cd sistema-academico-web
 ```bash
 python -m venv .venv
 ```
-
+---
 #### instalação de dependências
 Windows:
 ```bash
@@ -26,7 +27,7 @@ Linux ou Mac:
 python -m venv .venv
 .venv/bin/python -m pip install Flask-SQLAlchemy
 ```
-
+---
 ### Rodando ambiente de desenvolvimento
 
 Windows:
