@@ -24,7 +24,6 @@ Windows:
 
 Linux ou Mac:
 ```bash
-python -m venv .venv
 .venv/bin/python -m pip install Flask-SQLAlchemy
 ```
 ---
