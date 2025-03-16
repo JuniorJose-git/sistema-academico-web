@@ -3,7 +3,10 @@ from .extensions import db
 
 def create_app():
     app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://flask_user:password@localhost/flask_db'
+    
+    #app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://flask_user:password@localhost/flask_db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+
     
     db.init_app(app)
 
