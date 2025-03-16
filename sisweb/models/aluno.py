@@ -1,23 +1,39 @@
 from ..extensions import db
+from dataclasses import dataclass
 
+@dataclass
 class Aluno (db.Model):
     __tablename__ = "aluno"
-    id = db.Column(db.Integer, primary_key=True)
+    id: int = db.Column(db.Integer, primary_key=True)
     
-    nome = db.Column(db.String(100), nullable=False)
+    nome: str = db.Column(db.String(100), nullable=False)
 
-    cpf = db.Column(db.String(11), nullable=False, unique=True)
+    cpf: str = db.Column(db.String(11), nullable=False, unique=True)
 
-    email = db.Column(db.String(100), nullable=False, unique=True)
+    email: str = db.Column(db.String(100), nullable=False, unique=True)
 
-    senha = db.Column(db.String(100), nullable=False)
+    senha: str = db.Column(db.String(100), nullable=False)
 
-    telefone = db.Column(db.String(12), nullable=False)
+    telefone: str = db.Column(db.String(12), nullable=False)
 
-    genero = db.Column(db.String(12), nullable=False)
+    genero: str = db.Column(db.String(12), nullable=False)
 
-    data_nascimento = db.Column(db.DateTime, nullable=False)
+    data_nascimento: str = db.Column(db.DateTime, nullable=False)
 
-    matricula = db.Column(db.Integer, nullable=False, unique=True)
+    matricula: str = db.Column(db.Integer, nullable=False, unique=True)
 
-    data_matricula = db.Column(db.DateTime, nullable=False)
+    data_matricula: str = db.Column(db.DateTime, nullable=False)
+
+
+    # -------------
+
+    responsavel_aluno = db.relationship("ResponsavelAluno", back_populates="aluno")
+
+    serie: db.Mapped[str] = db.relationship("SerieAluno",back_populates="aluno")
+
+    aluno_turma = db.relationship("AlunoTurma",back_populates="aluno")
+
+    ocorrencia_aluno = db.relationship("OcorrenciaAluno",back_populates="aluno")
+
+
+

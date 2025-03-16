@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 
 from ..extensions import db
 from ..models.aluno import Aluno
@@ -6,8 +6,8 @@ from ..models.aluno import Aluno
 
 aluno = Blueprint('aluno', __name__)
 
-# @aluno.route("/")
-# def create_aluno():
-#     db.create_all()
+@aluno.route("/aluno")
+def aluno_json():
+    resp = db.session.execute(db.select(Aluno)).scalars().all()
 
-#     return "aluno"
+    return jsonify(resp)

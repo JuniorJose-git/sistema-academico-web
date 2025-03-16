@@ -1,8 +1,19 @@
 from ..extensions import db
 
+from dataclasses import dataclass
+
+@dataclass
 class TipoResponsavel(db.Model):
     __tablename__ = "tipo_responsavel"
     
-    id = db.Column(db.Integer, primary_key=True)
+    id: str = db.Column(db.Integer, primary_key=True)
 
-    nome = db.Column(db.String(20), nullable=False)
+    nome: str = db.Column(db.String(20), nullable=False)
+
+
+    # ------------
+
+    #responsavel: db.Mapped[list["ResponsavelAluno"]] = db.relationship("ResponsavelAluno", back_populates="tipo_responsavel")
+
+    responsavel = db.relationship("ResponsavelAluno", back_populates="tipo_responsavel")
+
