@@ -9,9 +9,9 @@ class Horario(db.Model):
 
     nome: str  = db.Column(db.String(50), nullable=False)
 
-    horario_inicio: str = db.Column(db.DateTime, nullable=False)
+    horario_inicio: str = db.Column(db.Time, nullable=False)
 
-    horario_fim: str = db.Column(db.DateTime, nullable=False)
+    horario_fim: str = db.Column(db.Time, nullable=False)
 
 
     # ----------

@@ -10,7 +10,7 @@ class AlunoTurma (db.Model):
     
     id_aluno:int = db.Column(db.ForeignKey("aluno.id"), nullable=False)
 
-    nota: int = db.Column(db.Integer, nullable=False)
+    nota: int = db.Column(db.Integer, nullable=False, default=0)
 
 
     # -------------

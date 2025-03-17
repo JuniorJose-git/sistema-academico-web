@@ -17,9 +17,9 @@ class SerieAluno (db.Model):
     # -------------
 
 
-    aluno = db.relationship("Aluno",back_populates="serie")
+    aluno = db.relationship("Aluno",back_populates="serie_aluno")
 
-    ano_escolar = db.relationship("AnoEscolar",back_populates="serie")
+    ano_escolar = db.relationship("AnoEscolar",back_populates="serie_aluno")
 
-    serie = db.relationship("Serie",back_populates="alunos")
+    serie = db.relationship("Serie",back_populates="serie_aluno")
 

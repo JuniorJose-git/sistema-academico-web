@@ -38,6 +38,38 @@ def create_data(app, db):
 
     create_data_professor(app,db)
 
+    #sala_de_aula
+
+    create_data_sala_de_aula(app,db)
+
+    #dia_semana
+
+    create_data_dia_semana(app,db)
+
+    #horario 
+
+    create_data_horario(app,db)
+
+
+    #dia_horario
+    create_dia_horario(app,db)
+
+    #materia
+
+    create_data_materia(app,db)
+
+    #diciplina
+
+    create_data_disciplina(app,db)
+
+    #turma e horario
+
+    create_data_turma(app,db)
+
+
+    #aluno_turma
+    create_data_aluno_turma(app,db)
+
 
 def create_data_aluno(app,db):
     from .models.aluno import Aluno
@@ -253,3 +285,264 @@ def create_data_professor(app,db):
         if len(resp) <= 0:
             db.session.add_all(x)
             db.session.commit()
+
+
+def create_data_sala_de_aula(app,db):
+    from .models.sala_de_aula import SalaDeAula
+
+    x = [
+        SalaDeAula(nome='Sala 101',capacidade=30),
+        SalaDeAula(nome='Sala 102',capacidade=20),
+        SalaDeAula(nome='Sala 103',capacidade=35),
+        SalaDeAula(nome='Sala 104',capacidade=30),
+        SalaDeAula(nome='Sala 105',capacidade=40),
+        SalaDeAula(nome='Sala 106',capacidade=30)
+    ]
+
+    with app.app_context():
+
+        resp = db.session.execute(db.select(SalaDeAula)).scalars().all()
+
+        if len(resp) <= 0:
+            db.session.add_all(x)
+            db.session.commit()
+
+
+def create_data_dia_semana(app,db):
+    from .models.dia_semana import DiaSemana
+
+    x = [
+        DiaSemana(nome='Domingo',numero=1),
+        DiaSemana(nome='Segunda-feira',numero=2),
+        DiaSemana(nome='Terça-feira',numero=3),
+        DiaSemana(nome='Quarta-feira',numero=4),
+        DiaSemana(nome='Quinta-feira',numero=5),
+        DiaSemana(nome='Sexta-feira',numero=6),
+        DiaSemana(nome='Sábado',numero=7),
+
+    ]
+
+    with app.app_context():
+
+        resp = db.session.execute(db.select(DiaSemana)).scalars().all()
+
+        if len(resp) <= 0:
+            db.session.add_all(x)
+            db.session.commit()
+
+def create_data_horario(app,db):
+    from .models.horario import Horario
+    from datetime import time
+
+    x = [
+        Horario(
+            nome="1º Período",
+            horario_inicio=time.fromisoformat('07:00'),
+            horario_fim=time.fromisoformat('09:00')
+        ),
+        Horario(
+            nome="Intervalo",
+            horario_inicio=time.fromisoformat('09:00'),
+            horario_fim=time.fromisoformat('09:15')
+        ),
+        Horario(
+            nome="2º Período",
+            horario_inicio=time.fromisoformat('09:15'),
+            horario_fim=time.fromisoformat('11:15')
+        )
+
+    ]
+
+    with app.app_context():
+
+        resp = db.session.execute(db.select(Horario)).scalars().all()
+
+        if len(resp) <= 0:
+            db.session.add_all(x)
+            db.session.commit()
+
+
+def create_dia_horario(app,db):
+    from .models.dia_horario import DiaHorario
+    from .models.horario import Horario
+    from .models.dia_semana import DiaSemana
+
+    with app.app_context(): 
+        dia_semana = db.session.execute(db.select(DiaSemana)).scalars().all()
+
+    with app.app_context(): 
+        horarios = db.session.execute(db.select(Horario)).scalars().all()
+
+    x = list()
+        
+    for dia in dia_semana:
+        for horario in horarios:
+            x.append(DiaHorario(id_horario=horario.id,id_dia_semana=dia.id))
+    
+
+
+    with app.app_context():
+
+        resp = db.session.execute(db.select(DiaHorario)).scalars().all()
+
+        if len(resp) <= 0:
+            db.session.add_all(x)
+            db.session.commit()
+
+
+def create_data_materia(app,db):
+    from .models.materia import Materia
+
+    x = [
+        Materia(nome="Matemática", descricao="Estudo dos números, formas, funções e equações."),
+        Materia(nome="Física", descricao="Análise das forças, movimento, energia e matéria."),
+        Materia(nome="Química", descricao="Estudo da composição, estrutura e propriedades da matéria."),
+        Materia(nome="Biologia", descricao="Ciência que estuda os seres vivos e seus processos vitais."),
+        Materia(nome="História", descricao="Análise dos eventos passados e sua influência no presente."),
+        Materia(nome="Geografia", descricao="Estudo da Terra, suas paisagens, população e fenômenos."),
+        Materia(nome="Português", descricao="Língua portuguesa, gramática, literatura e redação."),
+        Materia(nome="Inglês", descricao="Estudo da língua inglesa e suas aplicações."),
+        Materia(nome="Filosofia", descricao="Reflexão sobre questões fundamentais da existência humana."),
+        Materia(nome="Sociologia", descricao="Análise das estruturas e relações sociais."),
+        Materia(nome="Educação Física", descricao="Prática e estudo do corpo e atividades físicas."),
+        Materia(nome="Artes", descricao="Expressão artística, estética e história da arte."),
+    ]
+
+    with app.app_context():
+
+        resp = db.session.execute(db.select(Materia)).scalars().all()
+
+        if len(resp) <= 0:
+            db.session.add_all(x)
+            db.session.commit()
+
+
+def create_data_disciplina(app,db):
+
+    from .models.materia import Materia
+    from .models.disciplina import Disciplina
+
+    with app.app_context(): 
+        materias = db.session.execute(db.select(Materia)).scalars().all()
+
+    x = list()
+
+    map_disci = {
+        "Matemática": ["Álgebra", "Geometria", "Trigonometria", "Estatística"],
+        "Física": ["Mecânica", "Termodinâmica", "Eletromagnetismo", "Óptica"],
+        "Química": ["Química Orgânica", "Química Inorgânica", "Fisico-Química", "Bioquímica"],
+        "Biologia": ["Genética", "Ecologia", "Fisiologia", "Microbiologia"],
+        "História": ["História Antiga", "História Medieval", "História Moderna", "História Contemporânea"],
+        "Geografia": ["Geografia Física", "Geografia Humana", "Cartografia", "Geopolítica"],
+        "Português": ["Gramática", "Literatura", "Produção Textual", "Interpretação de Texto"],
+        "Inglês": ["Gramática Inglesa", "Compreensão Oral", "Leitura e Escrita", "Conversação"],
+        "Filosofia": ["Filosofia Antiga", "Filosofia Medieval", "Filosofia Moderna", "Ética e Moral"],
+        "Sociologia": ["Sociologia Geral", "Política e Sociedade", "Cultura e Identidade", "Movimentos Sociais"],
+        "Educação Física": ["Esportes Coletivos", "Treinamento Físico", "Saúde e Bem-estar", "Anatomia do Exercício"],
+        "Artes": ["História da Arte", "Música", "Teatro", "Artes Visuais"],
+    }
+
+    for materia in materias:
+        for disciplina in map_disci[materia.nome]:
+            x.append(Disciplina(
+                nome=disciplina,
+                descricao=f"Disciplina relacionada à matéria de {materia.nome}.",
+                id_materia=materia.id))
+        
+    with app.app_context():
+
+        resp = db.session.execute(db.select(Disciplina)).scalars().all()
+
+        if len(resp) <= 0:
+            db.session.add_all(x)
+            db.session.commit()
+
+
+def create_data_turma(app, db):
+    from .models.turma import Turma
+    from .models.professor import Professor
+    from .models.sala_de_aula import SalaDeAula
+    from .models.periodo import Periodo
+    from .models.disciplina import Disciplina
+    from .models.turma_dia_horario import TurmaDiaHorario
+    from .models.dia_horario import DiaHorario
+
+    with app.app_context():
+        professores = db.session.execute(db.select(Professor)).scalars().all()
+        salas = db.session.execute(db.select(SalaDeAula)).scalars().all()
+        periodos = db.session.execute(db.select(Periodo)).scalars().all()
+        disciplinas = db.session.execute(db.select(Disciplina)).scalars().all()
+        dia_horarios = db.session.execute(db.select(DiaHorario)).scalars().all()
+    
+    turmas = []
+    
+    for i in range(5):
+        turma = Turma(
+            id_disciplina=disciplinas[i % len(disciplinas)].id,
+            id_professor=professores[i % len(professores)].id,
+            id_sala_de_aula=salas[i % len(salas)].id,
+            id_periodo=periodos[i % len(periodos)].id
+        )
+        turmas.append(turma)
+    
+    with app.app_context():
+        if not db.session.execute(db.select(Turma)).scalars().all():
+            db.session.add_all(turmas)
+            db.session.commit()
+    
+    with app.app_context():
+        turmas = db.session.execute(db.select(Turma)).scalars().all()
+    
+    turma_dia_horarios = []
+    
+    for i, turma in enumerate(turmas):
+        for j in range(3):  # 3 horários por turma
+            dia_horario = dia_horarios[(i * 3 + j) % len(dia_horarios)]
+            turma_dia_horarios.append(TurmaDiaHorario(
+                id_turma=turma.id,
+                id_dia_horario=dia_horario.id
+            ))
+    
+    with app.app_context():
+        if not db.session.execute(db.select(TurmaDiaHorario)).scalars().all():
+            db.session.add_all(turma_dia_horarios)
+            db.session.commit()
+
+
+def create_data_aluno_turma(app,db):
+    from .models.turma import Turma
+    from .models.aluno import Aluno
+    from .models.aluno_turma import AlunoTurma
+
+
+    with app.app_context():
+        turmas = db.session.execute(db.select(Turma)).scalars().all()
+        alunos = db.session.execute(db.select(Aluno)).scalars().all()
+
+        # for aluno in alunos:
+        #     print(f"{aluno.nome} {aluno.id} = {aluno.serie_aluno.serie.nome}")
+
+        # for turma in turmas:
+        #     if (turma.id == 1):
+        #         for aluno in turma.aluno_turma:
+        #             print(f"{aluno.aluno.nome} {aluno.aluno.serie_aluno.serie.nome}")
+
+    
+    x = [
+        AlunoTurma(id_aluno=alunos[0].id,id_turma=turmas[0].id),
+        AlunoTurma(id_aluno=alunos[1].id,id_turma=turmas[1].id),
+        AlunoTurma(id_aluno=alunos[2].id,id_turma=turmas[2].id),
+        AlunoTurma(id_aluno=alunos[3].id,id_turma=turmas[0].id),
+        AlunoTurma(id_aluno=alunos[4].id,id_turma=turmas[1].id)
+    ]
+    
+    with app.app_context():
+
+        resp = db.session.execute(db.select(AlunoTurma)).scalars().all()
+
+        if len(resp) <= 0:
+            db.session.add_all(x)
+            db.session.commit()
+
+
+    
