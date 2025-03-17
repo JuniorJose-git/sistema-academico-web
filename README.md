@@ -19,7 +19,7 @@ python -m venv .venv
 #### instalação de dependências
 Windows:
 ```bash
-.venv\bin\python -m pip install Flask-SQLAlchemy pymysql
+.venv\scripts\python -m pip install Flask-SQLAlchemy pymysql
 ```
 
 Linux ou Mac:
@@ -31,7 +31,7 @@ Linux ou Mac:
 
 Windows:
 ```bash
-.venv\bin\python -m flask --app sisweb.app run
+.venv\scripts\python -m flask --app sisweb.app run
 ```
 
 Linux ou Mac:
