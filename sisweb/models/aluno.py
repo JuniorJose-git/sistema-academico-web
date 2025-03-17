@@ -29,7 +29,7 @@ class Aluno (db.Model):
 
     responsavel_aluno = db.relationship("ResponsavelAluno", back_populates="aluno")
 
-    serie_aluno: db.Mapped[str] = db.relationship("SerieAluno",back_populates="aluno")
+    serie_aluno = db.relationship("SerieAluno",back_populates="aluno")
 
     aluno_turma = db.relationship("AlunoTurma",back_populates="aluno")
 

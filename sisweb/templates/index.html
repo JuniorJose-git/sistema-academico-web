@@ -6,6 +6,33 @@
     <title>Document</title>
 </head>
 <body>
-    
+<main>
+    <table>
+        <tr>
+            <th></th>
+            {% for item in aluno.serie_aluno[0].ano_escolar.periodo %}
+            <th>{{item.numero_periodo }}º</th>
+            {% endfor %}
+            <th>Média</th>
+        </tr>
+        {% for materia in materias %}
+        <tr>
+            <td>{{ materia[0] }}</td>
+
+            {% for aluno_turma in aluno.aluno_turma %}
+
+                {% if aluno_turma.turma.disciplina.id_materia == materia[1] %}
+
+                <td>{{ aluno_turma.nota }}</td>
+                        
+                {% endif %}
+            {% endfor %}
+
+            <td>{{ somas[loop.index0]}}</td>
+
+        </tr>
+        {% endfor %}
+      </table> 
+</main>
 </body>
 </html>

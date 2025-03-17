@@ -236,10 +236,10 @@ def create_data_serie_aluno(app,db):
     from .models.serie_aluno import SerieAluno
     x = [
         SerieAluno(id_aluno=1, id_serie=1, id_ano_escolar=1),
-        SerieAluno(id_aluno=2, id_serie=2, id_ano_escolar=1),
-        SerieAluno(id_aluno=3, id_serie=3, id_ano_escolar=1),
+        SerieAluno(id_aluno=2, id_serie=1, id_ano_escolar=1),
+        SerieAluno(id_aluno=3, id_serie=1, id_ano_escolar=1),
         SerieAluno(id_aluno=4, id_serie=1, id_ano_escolar=1),
-        SerieAluno(id_aluno=5, id_serie=2, id_ano_escolar=1),
+        SerieAluno(id_aluno=5, id_serie=1, id_ano_escolar=1),
     ]
 
     with app.app_context():
@@ -275,7 +275,17 @@ def create_data_professor(app,db):
 
     x = [
         Professor(nome='Pedro Almeida',cpf='12345678901',email='pedro.almeida@email.com',senha='senha123',telefone='11912345678',genero='Masculino'),
-        Professor(nome='Cláudia Lima',cpf='98765432100',email='claudia.lima@email.com',senha='senha456',telefone='11923456789',genero='Feminino')
+        Professor(nome='Cláudia Lima',cpf='98765432100',email='claudia.lima@email.com',senha='senha456',telefone='11923456789',genero='Feminino'),
+        Professor(nome='Mariana Oliveira', cpf='11122233344', email='mariana.oliveira@email.com', senha='senha123', telefone='11987654321', genero='Feminino'),
+        Professor(nome='Ricardo Santos', cpf='22233344455', email='ricardo.santos@email.com', senha='senha456', telefone='11976543210', genero='Masculino'),
+        Professor(nome='Fernanda Costa', cpf='33344455566', email='fernanda.costa@email.com', senha='senha789', telefone='11965432109', genero='Feminino'),
+        Professor(nome='Gustavo Almeida', cpf='44455566677', email='gustavo.almeida@email.com', senha='senha321', telefone='11954321098', genero='Masculino'),
+        Professor(nome='Laura Mendes', cpf='55566677788', email='laura.mendes@email.com', senha='senha654', telefone='11943210987', genero='Feminino'),
+        Professor(nome='Carlos Henrique', cpf='66677788899', email='carlos.henrique@email.com', senha='senha987', telefone='11932109876', genero='Masculino'),
+        Professor(nome='Vanessa Lima', cpf='77788899900', email='vanessa.lima@email.com', senha='senha147', telefone='11921098765', genero='Feminino'),
+        Professor(nome='Tiago Souza', cpf='88899900011', email='tiago.souza@email.com', senha='senha258', telefone='11910987654', genero='Masculino'),
+        Professor(nome='Patrícia Rocha', cpf='99900011122', email='patricia.rocha@email.com', senha='senha369', telefone='11909876543', genero='Feminino'),
+        Professor(nome='Eduardo Martins', cpf='00011122233', email='eduardo.martins@email.com', senha='senha159', telefone='11908765432', genero='Masculino')
     ]
 
     with app.app_context():
@@ -462,51 +472,83 @@ def create_data_turma(app, db):
     from .models.turma import Turma
     from .models.professor import Professor
     from .models.sala_de_aula import SalaDeAula
-    from .models.periodo import Periodo
     from .models.disciplina import Disciplina
-    from .models.turma_dia_horario import TurmaDiaHorario
-    from .models.dia_horario import DiaHorario
+    from .models.materia import Materia
+
+    x = []
 
     with app.app_context():
         professores = db.session.execute(db.select(Professor)).scalars().all()
+        materias = db.session.execute(db.select(Materia)).scalars().all()
         salas = db.session.execute(db.select(SalaDeAula)).scalars().all()
-        periodos = db.session.execute(db.select(Periodo)).scalars().all()
-        disciplinas = db.session.execute(db.select(Disciplina)).scalars().all()
-        dia_horarios = db.session.execute(db.select(DiaHorario)).scalars().all()
-    
-    turmas = []
-    
-    for i in range(5):
-        turma = Turma(
-            id_disciplina=disciplinas[i % len(disciplinas)].id,
-            id_professor=professores[i % len(professores)].id,
-            id_sala_de_aula=salas[i % len(salas)].id,
-            id_periodo=periodos[i % len(periodos)].id
-        )
-        turmas.append(turma)
-    
+
+
+        for i, materia in enumerate(materias):
+            for j, disciplina in enumerate(materia.disciplina):
+                x.append(Turma(
+                    id_disciplina=disciplina.id,
+                    id_professor=(i+1),
+                    id_sala_de_aula=salas[i % len(salas)].id,
+                    id_periodo=(j+1),
+                ))
+                
     with app.app_context():
         if not db.session.execute(db.select(Turma)).scalars().all():
-            db.session.add_all(turmas)
+            db.session.add_all(x)
             db.session.commit()
+
+
+
+
+# def create_data_turma(app, db):
+#     from .models.turma import Turma
+#     from .models.professor import Professor
+#     from .models.sala_de_aula import SalaDeAula
+#     from .models.periodo import Periodo
+#     from .models.disciplina import Disciplina
+#     from .models.turma_dia_horario import TurmaDiaHorario
+#     from .models.dia_horario import DiaHorario
+
+#     with app.app_context():
+#         professores = db.session.execute(db.select(Professor)).scalars().all()
+#         salas = db.session.execute(db.select(SalaDeAula)).scalars().all()
+#         periodos = db.session.execute(db.select(Periodo)).scalars().all()
+#         disciplinas = db.session.execute(db.select(Disciplina)).scalars().all()
+#         dia_horarios = db.session.execute(db.select(DiaHorario)).scalars().all()
     
-    with app.app_context():
-        turmas = db.session.execute(db.select(Turma)).scalars().all()
+#     turmas = []
     
-    turma_dia_horarios = []
+#     for i in range(5):
+#         turma = Turma(
+#             id_disciplina=disciplinas[i % len(disciplinas)].id,
+#             id_professor=professores[i % len(professores)].id,
+#             id_sala_de_aula=salas[i % len(salas)].id,
+#             id_periodo=periodos[i % len(periodos)].id
+#         )
+#         turmas.append(turma)
     
-    for i, turma in enumerate(turmas):
-        for j in range(3):  # 3 horários por turma
-            dia_horario = dia_horarios[(i * 3 + j) % len(dia_horarios)]
-            turma_dia_horarios.append(TurmaDiaHorario(
-                id_turma=turma.id,
-                id_dia_horario=dia_horario.id
-            ))
+#     with app.app_context():
+#         if not db.session.execute(db.select(Turma)).scalars().all():
+#             db.session.add_all(turmas)
+#             db.session.commit()
     
-    with app.app_context():
-        if not db.session.execute(db.select(TurmaDiaHorario)).scalars().all():
-            db.session.add_all(turma_dia_horarios)
-            db.session.commit()
+#     with app.app_context():
+#         turmas = db.session.execute(db.select(Turma)).scalars().all()
+    
+#     turma_dia_horarios = []
+    
+#     for i, turma in enumerate(turmas):
+#         for j in range(3):  # 3 horários por turma
+#             dia_horario = dia_horarios[(i * 3 + j) % len(dia_horarios)]
+#             turma_dia_horarios.append(TurmaDiaHorario(
+#                 id_turma=turma.id,
+#                 id_dia_horario=dia_horario.id
+#             ))
+    
+#     with app.app_context():
+#         if not db.session.execute(db.select(TurmaDiaHorario)).scalars().all():
+#             db.session.add_all(turma_dia_horarios)
+#             db.session.commit()
 
 
 def create_data_aluno_turma(app,db):
@@ -527,14 +569,26 @@ def create_data_aluno_turma(app,db):
         #         for aluno in turma.aluno_turma:
         #             print(f"{aluno.aluno.nome} {aluno.aluno.serie_aluno.serie.nome}")
 
-    
     x = [
-        AlunoTurma(id_aluno=alunos[0].id,id_turma=turmas[0].id),
-        AlunoTurma(id_aluno=alunos[1].id,id_turma=turmas[1].id),
-        AlunoTurma(id_aluno=alunos[2].id,id_turma=turmas[2].id),
-        AlunoTurma(id_aluno=alunos[3].id,id_turma=turmas[0].id),
-        AlunoTurma(id_aluno=alunos[4].id,id_turma=turmas[1].id)
+        AlunoTurma(id_aluno=1,id_turma=1,nota=30),
+        AlunoTurma(id_aluno=1,id_turma=2,nota=23),
+        AlunoTurma(id_aluno=1,id_turma=3,nota=34),
+        AlunoTurma(id_aluno=1,id_turma=4,nota=12),
+        AlunoTurma(id_aluno=1,id_turma=5,nota=34),
+        AlunoTurma(id_aluno=1,id_turma=6,nota=45),
+        AlunoTurma(id_aluno=1,id_turma=7,nota=50),
+        AlunoTurma(id_aluno=1,id_turma=8,nota=56),
+
     ]
+
+
+    # x = [
+    #     AlunoTurma(id_aluno=alunos[0].id,id_turma=turmas[0].id,nota=30),
+    #     AlunoTurma(id_aluno=alunos[1].id,id_turma=turmas[1].id,nota=40),
+    #     AlunoTurma(id_aluno=alunos[2].id,id_turma=turmas[2].id,nota=23),
+    #     AlunoTurma(id_aluno=alunos[3].id,id_turma=turmas[0].id,nota=32),
+    #     AlunoTurma(id_aluno=alunos[4].id,id_turma=turmas[1].id,nota=43)
+    # ]
     
     with app.app_context():
 
@@ -543,6 +597,3 @@ def create_data_aluno_turma(app,db):
         if len(resp) <= 0:
             db.session.add_all(x)
             db.session.commit()
-
-
-    
