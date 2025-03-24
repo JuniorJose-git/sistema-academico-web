@@ -1,3 +1,7 @@
-main {
-    background-color: aqua;
+button.green{
+    background-color: #13CE66;
+}
+
+button.red{
+    background-color: #FF4949;
 }
