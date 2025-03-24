@@ -30,7 +30,7 @@ def aluno_json():
         for aluno_turma in aluno.aluno_turma:
             if materia[1] == aluno_turma.turma.disciplina.id_materia:
                 soma += aluno_turma.nota
-        somas.append(soma/4)
+        somas.append(soma/len(aluno.serie_aluno[0].ano_escolar.periodo))
             
 
     return render_template('index.html',aluno=aluno, materias=materias, somas=somas)

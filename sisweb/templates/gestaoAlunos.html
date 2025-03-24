@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+
+    <title>Ramayana - HTML5 Template</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+<!--
+Ramayana CSS Template
+https://templatemo.com/tm-529-ramayana
+-->
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../static/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../static/assets/css/templatemo-style.css">
+    <link rel="stylesheet" href="../static/assets/css/owl.css">
+
+  </head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+      <!-- Main -->
+        <div id="main">
+          <div class="inner">
+
+            <!-- Header -->
+            <header id="header">
+              <div class="logo">
+                <a href="index.html">Sistema Acadêmico</a>
+              </div>
+            </header>
+
+            <!-- Page Heading -->
+            <div class="page-heading">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h1>Inserir Alunos</h1>
+                    <p><strong>Ramayana</strong> is free Bootstrap 4 CSS template from templatemo website. You can feel free to use it. Donec mattis tincidunt ipsum vel efficitur. Aliquam aliquam interdum rhoncus. Nam nec condimentum dolor, et pharetra nisi. In feugiat felis nec erat eleifend condimentum. Aliquam egestas convallis eros sed gravida. Curabitur consequat sit amet neque ac ornare.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+        
+
+
+
+            <!-- Tables -->
+           
+
+            Forms
+            <section class="forms">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="section-heading">
+                      <h2>Forms</h2>
+                    </div>
+                    <form id="contact" action="/criar" method="post">
+                      <div class="row">
+                        <div class="col-md-6">
+                          <fieldset>
+                            <input name="name" type="text" class="form-control" id="name" placeholder="Nome Aluno..." required="">
+                          </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                          <fieldset>
+                            <input name="email" type="email" class="form-control" id="email" placeholder="Email Aluno..." required="">
+                          </fieldset>
+                        </div>
+                        <div class="col-md-6">
+                            <fieldset>
+                              <input name="telefone" type="tel" class="form-control" id="telefone" placeholder="Telefone Aluno..." required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-md-6">
+                            <fieldset>
+                              <input name="genero" type="text" class="form-control" id="genero" placeholder="Genero Aluno..." required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-md-6">
+                            <fieldset>
+                              <input name="data_nasc" type="date" class="form-control" id="data_nasc" placeholder="Data de Nascimento Aluno..." required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-md-6">
+                            <fieldset>
+                              <input name="cpf" type="text" class="form-control" id="cpf" placeholder="CPF Aluno..." required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-md-6">
+                            <fieldset>
+                              <input name="senha" type="text" class="form-control" id="senha" placeholder="Senha Aleatoria..." required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-md-6">
+                            <fieldset>
+                              <input name="matricula" type="text" class="form-control" id="matricula" placeholder="Matricula Aluno..." required="">
+                            </fieldset>
+                          </div>
+                          <div class="col-md-6">
+                            <fieldset>
+                              <input name="matricula_data" type="date" class="form-control" id="matricula_data" placeholder="Data da Matricula Aluno..." required="">
+                            </fieldset>
+                          </div>
+
+                          <!-- Botao -->
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-md-6 col-sm-12">
+                                <div class="row">
+                                  <div class="col-md-12">
+                                    <div class="filled-rectangle-button">
+                                      <a href="#">Cadastrar Aluno</a>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                    
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <h1>Lista de Aluno</h1>
+      <ul>
+          {% for aluno in nomes %}
+            <li>{{ aluno.nome }}</li>
+          {% endfor %}
+      </ul> 
+
+            Tables
+            <section class="buttons">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="section-heading">
+                      <h2>Buttons</h2>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="filled-rectangle-button">
+                          <a href="#">Filled Button</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="border-rectangle-button">
+                          <a href="#">Border Button</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="filled-radius-button">
+                          <a href="#">Filled Button</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="border-radius-button">
+                          <a href="#">Border Button</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="filled-rounded-button">
+                          <a href="#">Filled Button</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="border-rounded-button">
+                          <a href="#">Border Button</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="filled-icon-button">
+                          <a href="#"><i class="fa fa-check"></i>Filled Button</a>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="border-icon-button">
+                          <a href="#"><i class="fa fa-check"></i>Border Button</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 col-sm-12">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="filled-rectangle-button">
+                          <a href="#">Filled Button</a>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="border-rectangle-button">
+                          <a href="#">Border Button</a>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="filled-rounded-button">
+                          <a href="#">Filled Button</a>
+                        </div>
+                      </div>
+                      <div class="col-md-12">
+                        <div class="border-rounded-button">
+                          <a href="#">Border Button</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+          </div>
+        </div>
+
+      <!-- Sidebar -->
+        <div id="sidebar">
+
+          <div class="inner">
+
+            <div class="top-section">
+              <div class="profile-image">
+                  <img src="../static/assets/images//wilson.jpg" alt="Acadêmico">
+              </div>
+              <div class="profile-content">
+                <h3 class="profile-title">Wilson Sanches</h3>
+                <p class="profile-description">Sistema Acadêmico</p>
+              </div>
+          </div>
+
+            <!-- Search Box
+            <section id="search" class="alt">
+              <form method="get" action="#">
+                <input type="text" name="search" id="search" placeholder="Search..." />
+              </form>
+            </section> -->
+              
+            <!-- Menu -->
+            <nav id="menu">
+              <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="shortcodes.html">Relatórios</a></li>
+                <li><a href="gestaoAlunos.html">Gestão de Alunos</a></li>
+                <!-- <li>
+                  <span class="opener">Turmas</span>
+                  <ul>
+                    <li><a href="#">3º ano B</a></li>
+                    <li><a href="#">1º ano C</a></li>
+                    <li><a href="#">9º ano A</a></li>
+                  </ul>
+                </li> -->
+                <li>
+                <!--<span class="opener">Dropdown Two</span>
+                  <ul>
+                    <li><a href="#">Sub Menu #1</a></li>
+                    <li><a href="#">Sub Menu #2</a></li>
+                    <li><a href="#">Sub Menu #3</a></li>
+                  </ul>
+                  li><a href="https://www.google.com">External Link</a></li> --> 
+                </li>
+              </ul>
+            </nav>
+
+            <!-- Featured Posts -->
+            <div class="featured-posts">
+              <div class="heading">
+                <h2>Featured Posts</h2>
+              </div>
+              <div class="owl-carousel owl-theme">
+                <a href="#">
+                  <div class="featured-item">
+                    <img src="../static/assets/images/featured_post_01.jpg" alt="featured one">
+                    <p>Aliquam egestas convallis eros sed gravida. Curabitur consequat sit.</p>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="featured-item">
+                    <img src="../static/assets/images/featured_post_01.jpg" alt="featured two">
+                    <p>Donec a scelerisque massa. Aliquam non iaculis quam. Duis arcu turpis.</p>
+                  </div>
+                </a>
+                <a href="#">
+                  <div class="featured-item">
+                    <img src="../static/assets/images/featured_post_01.jpg" alt="featured three">
+                    <p>Suspendisse ac convallis urna, vitae luctus ante. Donec sit amet.</p>
+                  </div>
+                </a>
+              </div>
+            </div>
+
+            <!-- Footer -->
+            <footer id="footer">
+              <p class="copyright">Copyright &copy; 2025 GambTech
+              <br>Designed by <a rel="nofollow" href="https://t.ctcdn.com.br/GR014wWXkOpIOo0kpxSfSRnk_Jk=/959x539/smart/i598772.jpeg">Isabely</a></p>
+            </footer>
+            
+          </div>
+        </div>
+
+    </div>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+    <script src="../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../static/assets/js/browser.min.js"></script>
+    <script src="../static/assets/js/breakpoints.min.js"></script>
+    <script src="../static/assets/js/transition.js"></script>
+    <script src="../static/assets/js/owl-carousel.js"></script>
+    <script src="../static/assets/js/custom.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+
+
+  </body>
+
+</html>
