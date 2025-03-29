@@ -1,14 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.coordenador import CoordenadorModel
 
-from extensions import db
-from models.coordenador import Coordenador
+class CoordenadorController:
+    def __init__(self):
+        self.model = CoordenadorModel()
 
-
-# coordenador = Blueprint('coordenador', __name__)
-
-
-# @coordenador.route("/coordenador")
-# def coordenador_json():
-#     resp = db.session.execute(db.select(Coordenador)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

@@ -1,14 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.horario import HorarioModel
 
-from extensions import db
-from models.horario import Horario
+class HorarioController:
+    def __init__(self):
+        self.model = HorarioModel()
 
-
-# horario = Blueprint('horario', __name__)
-
-
-# @horario.route("/sala-de-aula")
-# def horario_json():
-#     resp = db.session.execute(db.select(Horario)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

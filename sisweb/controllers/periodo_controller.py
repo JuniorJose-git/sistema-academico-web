@@ -1,13 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.periodo import PeriodoModel
 
-from extensions import db
-from models.periodo import Periodo
+class PeriodoController:
+    def __init__(self):
+        self.model = PeriodoModel()
 
-
-# periodo = Blueprint('periodo', __name__)
-
-# @periodo.route("/periodo")
-# def periodo_json():
-#     resp = db.session.execute(db.select(Periodo)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

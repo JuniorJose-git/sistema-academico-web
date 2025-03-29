@@ -1,13 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.turma import TurmaModel
 
-from extensions import db
-from models.turma import Turma
+class TurmaController:
+    def __init__(self):
+        self.model = TurmaModel()
 
-
-# turma = Blueprint('turma', __name__)
-
-# @turma.route("/turma")
-# def turma_json():
-#     resp = db.session.execute(db.select(Turma)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

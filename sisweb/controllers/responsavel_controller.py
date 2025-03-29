@@ -1,14 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.responsavel import ResponsavelModel
 
-from extensions import db
-from models.responsavel import Responsavel
+class ResponsavelController:
+    def __init__(self):
+        self.model = ResponsavelModel()
 
-
-# responsavel = Blueprint('responsavel', __name__)
-
-
-# @responsavel.route("/responsavel")
-# def responsavel_json():
-#     resp = db.session.execute(db.select(Responsavel)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

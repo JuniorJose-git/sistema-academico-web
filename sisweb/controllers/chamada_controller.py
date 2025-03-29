@@ -1,13 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.chamada import ChamadaModel
 
-from extensions import db
-from models.chamada import Chamada
+class ChamadaController:
+    def __init__(self):
+        self.model = ChamadaModel()
 
-
-# chamada = Blueprint('chamada', __name__)
-
-# @chamada.route("/chamada")
-# def chamada_json():
-#     resp = db.session.execute(db.select(Chamada)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

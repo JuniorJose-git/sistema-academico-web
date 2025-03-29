@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, jsonify
 
 main_bp = Blueprint('main_bp', __name__)
 
@@ -9,6 +9,4 @@ def main():
 
     alunocontroller = controllers.AlunoController()
 
-    print(alunocontroller.listar())
-
-    return "teste"
+    return jsonify(alunocontroller.listar())

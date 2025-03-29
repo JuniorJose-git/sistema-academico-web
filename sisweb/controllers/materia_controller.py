@@ -1,14 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.materia import MateriaModel
 
-from extensions import db
-from models.materia import Materia
+class MateriaController:
+    def __init__(self):
+        self.model = MateriaModel()
 
-
-# materia = Blueprint('materia', __name__)
-
-
-# @materia.route("/materia")
-# def materia_json():
-#     resp = db.session.execute(db.select(Materia)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

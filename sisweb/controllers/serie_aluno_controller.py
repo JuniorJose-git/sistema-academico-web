@@ -1,13 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.serie_aluno import SerieAlunoModel
 
-from extensions import db
-from models.serie_aluno import SerieAluno
+class SerieAlunoController:
+    def __init__(self):
+        self.model = SerieAlunoModel()
 
-# serie_aluno = Blueprint('serie_aluno', __name__)
-
-
-# @serie_aluno.route("/serie-aluno")
-# def serie_aluno_json():
-#     resp = db.session.execute(db.select(SerieAluno)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

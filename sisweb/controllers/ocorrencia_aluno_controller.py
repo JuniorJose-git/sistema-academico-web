@@ -1,13 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.ocorrencia_aluno import OcorrenciaAlunoModel
 
-from extensions import db
-from models.ocorrencia_aluno import OcorrenciaAluno
+class OcorrenciaAlunoController:
+    def __init__(self):
+        self.model = OcorrenciaAlunoModel()
 
-
-# ocorrencia_aluno = Blueprint('ocorrencia_aluno', __name__)
-
-# @ocorrencia_aluno.route("/ocorrencia-aluno")
-# def ocorrencia_aluno_json():
-#     resp = db.session.execute(db.select(OcorrenciaAluno)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

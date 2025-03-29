@@ -1,14 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.disciplina import DisciplinaModel
 
-from extensions import db
-from models.disciplina import Disciplina
+class DisciplinaController:
+    def __init__(self):
+        self.model = DisciplinaModel()
 
-
-# disciplina = Blueprint('disciplina', __name__)
-
-
-# @disciplina.route("/disciplina")
-# def disciplina_json():
-#     resp = db.session.execute(db.select(Disciplina)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

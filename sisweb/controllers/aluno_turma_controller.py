@@ -1,11 +1,9 @@
 
-from models.aluno_turma import AlunoTurma
+from models.aluno_turma import AlunoTurmaModel
 
+class AlunoTurmaController:
+    def __init__(self):
+        self.model = AlunoTurmaModel()
 
-# aluno_turma = Blueprint('aluno_turma', __name__)
-
-# @aluno_turma.route("/aluno-turma")
-# def aluno_turma_json():
-#     alunos = db.session.execute(db.select(AlunoTurma)).scalars().all()
-
-#     return jsonify(alunos)
+    def listar(self):
+        return self.model.listar()

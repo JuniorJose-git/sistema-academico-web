@@ -1,13 +1,8 @@
-# from flask import Blueprint, jsonify
+from models.turma_dia_horario import TurmaDiaHorarioModel
 
-from extensions import db
-from models.turma_dia_horario import TurmaDiaHorario
+class TurmaDiaHorarioController:
+    def __init__(self):
+        self.model = TurmaDiaHorarioModel()
 
-
-# turma_dia_horario = Blueprint('turma_dia_horario', __name__)
-
-# @turma_dia_horario.route("/turma-dia-horario")
-# def turma_dia_horario_json():
-#     resp = db.session.execute(db.select(TurmaDiaHorario)).scalars().all()
-
-#     return jsonify(resp)
+    def listar(self):
+        return self.model.listar()

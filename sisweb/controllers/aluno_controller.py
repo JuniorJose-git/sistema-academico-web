@@ -1,7 +1,6 @@
 
 from models.aluno import AlunoModel
 
-
 class AlunoController:
     def __init__(self):
         self.model = AlunoModel()
