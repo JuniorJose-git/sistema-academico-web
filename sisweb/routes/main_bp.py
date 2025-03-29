@@ -1,12 +1,7 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, render_template
 
 main_bp = Blueprint('main_bp', __name__)
 
-import controllers
-
 @main_bp.route("/")
 def main():    
-
-    alunocontroller = controllers.AlunoController()
-
-    return jsonify(alunocontroller.listar())
+    return render_template("index.html")
