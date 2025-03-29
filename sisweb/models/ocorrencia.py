@@ -17,3 +17,7 @@ class Ocorrencia (db.Model):
     coordenador = db.relationship("Coordenador",back_populates="ocorrencia")
 
     ocorrencia_aluno = db.relationship("OcorrenciaAluno",back_populates="ocorrencia")
+
+class OcorrenciaModel:
+    def listar(self):
+        return Ocorrencia.query.all()

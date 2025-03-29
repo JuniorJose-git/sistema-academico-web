@@ -17,3 +17,7 @@ class Horario(db.Model):
     # ----------
 
     dia_horario = db.relationship("DiaHorario",back_populates="horario")
+
+class HorarioModel:
+    def listar(self):
+        return Horario.query.all()

@@ -15,3 +15,7 @@ class Materia(db.Model):
 
 
     disciplina = db.relationship("Disciplina",back_populates="materia")
+
+class MateriaModel:
+    def listar(self):
+        return Materia.query.all()

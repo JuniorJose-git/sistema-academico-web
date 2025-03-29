@@ -14,3 +14,7 @@ class DiaSemana(db.Model):
     # ----------
 
     dia_horario = db.relationship("DiaHorario",back_populates="dia_semana")
+
+class DiaSemanaModel:
+    def listar(self):
+        return DiaSemana.query.all()

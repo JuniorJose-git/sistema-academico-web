@@ -22,3 +22,9 @@ class Coordenador(db.Model):
     # ----------
 
     ocorrencia = db.relationship("Ocorrencia",back_populates="coordenador")
+
+class CoordenadorModel:
+    def listar(self):
+        return Coordenador.query.all()
+
+    

@@ -16,3 +16,6 @@ class TurmaDiaHorario (db.Model):
 
     turma = db.relationship("Turma",back_populates="turma_dia_horario")
 
+class TurmaDiaHorarioModel:
+    def listar(self):
+        return TurmaDiaHorario.query.all()

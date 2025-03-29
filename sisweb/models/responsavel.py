@@ -20,3 +20,7 @@ class Responsavel(db.Model):
     # ----------
 
     responsavel_aluno = db.relationship("ResponsavelAluno", back_populates="responsavel")
+
+class ResponsavelModel:
+    def listar(self):
+        return Responsavel.query.all()

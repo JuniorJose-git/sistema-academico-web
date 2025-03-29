@@ -36,4 +36,6 @@ class Aluno (db.Model):
     ocorrencia_aluno = db.relationship("OcorrenciaAluno",back_populates="aluno")
 
 
-
+class AlunoModel:
+    def listar(self):
+        return Aluno.query.all()

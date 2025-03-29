@@ -20,3 +20,7 @@ class AnoEscolar(db.Model):
 
     periodo = db.relationship("Periodo",back_populates="ano_escolar")
 
+
+class AnoEscolarModel:
+    def listar(self):
+        return AnoEscolar.query.all()

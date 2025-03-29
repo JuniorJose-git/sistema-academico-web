@@ -21,7 +21,7 @@ def create_app():
     with app.app_context():
         db.create_all()
 
-    # from .create_data import create_data
-    # create_data(app,db)
+    from .create_data import create_data
+    create_data(app,db)
 
     return app

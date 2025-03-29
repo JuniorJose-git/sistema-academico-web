@@ -18,4 +18,6 @@ class DiaHorario (db.Model):
 
     turma_dia_horario = db.relationship("TurmaDiaHorario",back_populates="dia_horario")
 
-
+class DiaHorarioModel:
+    def listar(self):
+        return DiaHorario.query.all()

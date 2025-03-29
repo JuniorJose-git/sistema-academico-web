@@ -5,6 +5,10 @@ main_bp = Blueprint('main_bp', __name__)
 import controllers
 
 @main_bp.route("/")
-def main():
+def main():    
+
+    alunocontroller = controllers.AlunoController()
+
+    print(alunocontroller.listar())
 
     return "teste"

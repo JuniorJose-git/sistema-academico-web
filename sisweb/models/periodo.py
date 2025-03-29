@@ -21,4 +21,6 @@ class Periodo (db.Model):
     turma = db.relationship("Turma",back_populates="periodo")
 
 
-
+class PeriodoModel:
+    def listar(self):
+        return Periodo.query.all()

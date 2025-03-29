@@ -17,5 +17,6 @@ class OcorrenciaAluno (db.Model):
 
     ocorrencia = db.relationship("Ocorrencia",back_populates="ocorrencia_aluno")
 
-
-
+class OcorrenciaAlunoModel:
+    def listar(self):
+        return OcorrenciaAluno.query.all()

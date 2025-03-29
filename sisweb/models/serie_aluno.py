@@ -23,3 +23,6 @@ class SerieAluno (db.Model):
 
     serie = db.relationship("Serie",back_populates="serie_aluno")
 
+class SerieAlunoModel:
+    def listar(self):
+        return SerieAluno.query.all()

@@ -72,7 +72,7 @@ def create_data(app, db):
 
 
 def create_data_aluno(app,db):
-    from .models.aluno import Aluno
+    from models.aluno import Aluno
     x = [
     Aluno(
         nome="Ana Souza",
@@ -139,7 +139,7 @@ def create_data_aluno(app,db):
             db.session.commit()
 
 def create_data_responsavel(app,db):
-    from .models.responsavel import Responsavel
+    from models.responsavel import Responsavel
 
     x = [
         Responsavel(nome='Paulo Silva',cpf='12312312300',email='paulo.silva@email.com',senha='senha123',telefone='11912345678'),
@@ -155,7 +155,7 @@ def create_data_responsavel(app,db):
             db.session.commit()
 
 def create_data_tipo_responsavel(app,db):
-    from .models.tipo_responsavel import TipoResponsavel
+    from models.tipo_responsavel import TipoResponsavel
     x = [
     TipoResponsavel(nome="Pai"),
     TipoResponsavel(nome="Mãe"),
@@ -172,7 +172,7 @@ def create_data_tipo_responsavel(app,db):
             db.session.commit()
 
 def create_data_responsavel_aluno(app,db):
-    from .models.responsavel_aluno import ResponsavelAluno
+    from models.responsavel_aluno import ResponsavelAluno
 
     x = [
         ResponsavelAluno(id_aluno=1,id_responsavel=2,id_tipo_responsavel=2),
@@ -189,7 +189,7 @@ def create_data_responsavel_aluno(app,db):
 
 
 def create_data_serie(app,db):
-    from .models.serie import Serie
+    from models.serie import Serie
 
     x = [
         Serie(
@@ -215,7 +215,7 @@ def create_data_serie(app,db):
 
 
 def create_data_ano_escolar(app,db):
-    from .models.ano_escolar import AnoEscolar
+    from models.ano_escolar import AnoEscolar
 
     x = [
         AnoEscolar(nome='2025',data_inicio=date(2025,1,1),data_fim=date(2025,12,31))
@@ -233,7 +233,7 @@ def create_data_ano_escolar(app,db):
     
 
 def create_data_serie_aluno(app,db):
-    from .models.serie_aluno import SerieAluno
+    from models.serie_aluno import SerieAluno
     x = [
         SerieAluno(id_aluno=1, id_serie=1, id_ano_escolar=1),
         SerieAluno(id_aluno=2, id_serie=1, id_ano_escolar=1),
@@ -252,7 +252,7 @@ def create_data_serie_aluno(app,db):
 
 
 def create_data_periodo(app, db):
-    from .models.periodo import Periodo
+    from models.periodo import Periodo
     x = [
         Periodo(numero_periodo=1, data_inicio=date(2025, 1, 1), data_fim=date(2025, 3, 31), id_ano_escolar=1),
         Periodo(numero_periodo=2, data_inicio=date(2025, 4, 1), data_fim=date(2025, 6, 30), id_ano_escolar=1),
@@ -271,7 +271,7 @@ def create_data_periodo(app, db):
 
 
 def create_data_professor(app,db):
-    from .models.professor import Professor
+    from models.professor import Professor
 
     x = [
         Professor(nome='Pedro Almeida',cpf='12345678901',email='pedro.almeida@email.com',senha='senha123',telefone='11912345678',genero='Masculino'),
@@ -298,7 +298,7 @@ def create_data_professor(app,db):
 
 
 def create_data_sala_de_aula(app,db):
-    from .models.sala_de_aula import SalaDeAula
+    from models.sala_de_aula import SalaDeAula
 
     x = [
         SalaDeAula(nome='Sala 101',capacidade=30),
@@ -319,7 +319,7 @@ def create_data_sala_de_aula(app,db):
 
 
 def create_data_dia_semana(app,db):
-    from .models.dia_semana import DiaSemana
+    from models.dia_semana import DiaSemana
 
     x = [
         DiaSemana(nome='Domingo',numero=1),
@@ -341,7 +341,7 @@ def create_data_dia_semana(app,db):
             db.session.commit()
 
 def create_data_horario(app,db):
-    from .models.horario import Horario
+    from models.horario import Horario
     from datetime import time
 
     x = [
@@ -373,9 +373,9 @@ def create_data_horario(app,db):
 
 
 def create_dia_horario(app,db):
-    from .models.dia_horario import DiaHorario
-    from .models.horario import Horario
-    from .models.dia_semana import DiaSemana
+    from models.dia_horario import DiaHorario
+    from models.horario import Horario
+    from models.dia_semana import DiaSemana
 
     with app.app_context(): 
         dia_semana = db.session.execute(db.select(DiaSemana)).scalars().all()
@@ -401,7 +401,7 @@ def create_dia_horario(app,db):
 
 
 def create_data_materia(app,db):
-    from .models.materia import Materia
+    from models.materia import Materia
 
     x = [
         Materia(nome="Matemática", descricao="Estudo dos números, formas, funções e equações."),
@@ -429,8 +429,8 @@ def create_data_materia(app,db):
 
 def create_data_disciplina(app,db):
 
-    from .models.materia import Materia
-    from .models.disciplina import Disciplina
+    from models.materia import Materia
+    from models.disciplina import Disciplina
 
     with app.app_context(): 
         materias = db.session.execute(db.select(Materia)).scalars().all()
@@ -469,11 +469,11 @@ def create_data_disciplina(app,db):
 
 
 def create_data_turma(app, db):
-    from .models.turma import Turma
-    from .models.professor import Professor
-    from .models.sala_de_aula import SalaDeAula
-    from .models.disciplina import Disciplina
-    from .models.materia import Materia
+    from models.turma import Turma
+    from models.professor import Professor
+    from models.sala_de_aula import SalaDeAula
+    from models.disciplina import Disciplina
+    from models.materia import Materia
 
     x = []
 
@@ -501,13 +501,13 @@ def create_data_turma(app, db):
 
 
 # def create_data_turma(app, db):
-#     from .models.turma import Turma
-#     from .models.professor import Professor
-#     from .models.sala_de_aula import SalaDeAula
-#     from .models.periodo import Periodo
-#     from .models.disciplina import Disciplina
-#     from .models.turma_dia_horario import TurmaDiaHorario
-#     from .models.dia_horario import DiaHorario
+#     from models.turma import Turma
+#     from models.professor import Professor
+#     from models.sala_de_aula import SalaDeAula
+#     from models.periodo import Periodo
+#     from models.disciplina import Disciplina
+#     from models.turma_dia_horario import TurmaDiaHorario
+#     from models.dia_horario import DiaHorario
 
 #     with app.app_context():
 #         professores = db.session.execute(db.select(Professor)).scalars().all()
@@ -552,9 +552,9 @@ def create_data_turma(app, db):
 
 
 def create_data_aluno_turma(app,db):
-    from .models.turma import Turma
-    from .models.aluno import Aluno
-    from .models.aluno_turma import AlunoTurma
+    from models.turma import Turma
+    from models.aluno import Aluno
+    from models.aluno_turma import AlunoTurma
 
 
     with app.app_context():

@@ -29,5 +29,6 @@ class Turma (db.Model):
 
     aluno_turma = db.relationship("AlunoTurma",back_populates="turma")
 
-
-
+class TurmaModel:
+    def listar(self):
+        return Turma.query.all()

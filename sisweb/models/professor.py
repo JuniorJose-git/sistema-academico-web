@@ -27,3 +27,6 @@ class Professor(db.Model):
 # class ProfessorModel():
 #     def listar():
         
+class ProfessorModel:
+    def listar(self):
+        return Professor.query.all()

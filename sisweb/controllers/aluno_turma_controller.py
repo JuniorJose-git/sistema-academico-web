@@ -1,6 +1,4 @@
-# from flask import Blueprint, jsonify
 
-from extensions import db
 from models.aluno_turma import AlunoTurma
 
 

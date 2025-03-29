@@ -14,3 +14,7 @@ class SalaDeAula(db.Model):
     # ----------
 
     turma = db.relationship("Turma",back_populates="sala_de_aula")
+
+class SalaDeAulaModel:
+    def listar(self):
+        return SalaDeAula.query.all()

@@ -17,3 +17,6 @@ class TipoResponsavel(db.Model):
 
     responsavel = db.relationship("ResponsavelAluno", back_populates="tipo_responsavel")
 
+class TipoResponsavelModel:
+    def listar(self):
+        return TipoResponsavel.query.all()

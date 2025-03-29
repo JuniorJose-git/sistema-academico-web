@@ -15,3 +15,7 @@ class Chamada (db.Model):
     # -------------
 
     aluno_turma = db.relationship("AlunoTurma",back_populates="chamada")
+
+class ChamadaModel:
+    def listar(self):
+        return Chamada.query.all()

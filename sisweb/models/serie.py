@@ -14,3 +14,7 @@ class Serie (db.Model):
     # -------------
 
     serie_aluno = db.relationship("SerieAluno",back_populates="serie")
+
+class SerieModel:
+    def listar(self):
+        return Serie.query.all()
