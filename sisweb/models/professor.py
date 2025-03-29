@@ -24,9 +24,17 @@ class Professor(db.Model):
     turma = db.relationship("Turma",back_populates="professor")
 
 
-# class ProfessorModel():
-#     def listar():
-        
 class ProfessorModel:
     def listar(self):
         return Professor.query.all()
+
+    def listar_turma(self, id):
+
+        turma = db.session.execute(db.select(Professor.turma).filter_by(id = id))
+
+        print(turma)
+
+        return db.get_or_404(Professor, id)
+
+    def professor_get(self,id):
+        return db.get_or_404(Professor, id)

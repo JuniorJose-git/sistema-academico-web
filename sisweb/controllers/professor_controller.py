@@ -6,3 +6,8 @@ class ProfessorController:
 
     def listar(self):
         return self.model.listar()
+
+
+    def listar_turma(self, id):
+
+        return self.model.listar_turma(id)
