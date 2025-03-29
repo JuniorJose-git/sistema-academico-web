@@ -1,14 +1,14 @@
-from flask import Blueprint, jsonify
+# from flask import Blueprint, jsonify
 
-from ..extensions import db
-from ..models.horario import Horario
-
-
-horario = Blueprint('horario', __name__)
+from extensions import db
+from models.horario import Horario
 
 
-@horario.route("/sala-de-aula")
-def horario_json():
-    resp = db.session.execute(db.select(Horario)).scalars().all()
+# horario = Blueprint('horario', __name__)
 
-    return jsonify(resp)
+
+# @horario.route("/sala-de-aula")
+# def horario_json():
+#     resp = db.session.execute(db.select(Horario)).scalars().all()
+
+#     return jsonify(resp)

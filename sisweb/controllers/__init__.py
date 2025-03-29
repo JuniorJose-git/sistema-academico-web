@@ -1,0 +1,1 @@
+from .aluno_controller import Aluno

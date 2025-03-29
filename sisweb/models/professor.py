@@ -1,4 +1,4 @@
-from ..extensions import db
+from extensions import db
 from dataclasses import dataclass
 
 @dataclass
@@ -22,3 +22,8 @@ class Professor(db.Model):
     # ----------
 
     turma = db.relationship("Turma",back_populates="professor")
+
+
+# class ProfessorModel():
+#     def listar():
+        

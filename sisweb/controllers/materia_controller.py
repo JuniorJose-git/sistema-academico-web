@@ -1,14 +1,14 @@
-from flask import Blueprint, jsonify
+# from flask import Blueprint, jsonify
 
-from ..extensions import db
-from ..models.materia import Materia
-
-
-materia = Blueprint('materia', __name__)
+from extensions import db
+from models.materia import Materia
 
 
-@materia.route("/materia")
-def materia_json():
-    resp = db.session.execute(db.select(Materia)).scalars().all()
+# materia = Blueprint('materia', __name__)
 
-    return jsonify(resp)
+
+# @materia.route("/materia")
+# def materia_json():
+#     resp = db.session.execute(db.select(Materia)).scalars().all()
+
+#     return jsonify(resp)
