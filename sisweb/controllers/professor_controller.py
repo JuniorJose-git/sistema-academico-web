@@ -11,3 +11,6 @@ class ProfessorController:
     def listar_turma(self, id):
 
         return self.model.listar_turma(id)
+
+    def professor_get(self,id):
+        return self.model.professor_get(id)
