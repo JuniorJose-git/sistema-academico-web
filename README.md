@@ -31,10 +31,10 @@ Linux ou Mac:
 
 Windows:
 ```bash
-.venv\scripts\python -m flask --app sisweb.app run
+.venv\scripts\python -m flask --app sisweb run
 ```
-
+ 
 Linux ou Mac:
 ```bash
-.venv/bin/python -m flask --app sisweb.app run
+.venv/bin/python -m flask --app sisweb run
 ```
