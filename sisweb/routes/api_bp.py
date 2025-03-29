@@ -7,11 +7,11 @@ import controllers
 
 professorController = controllers.ProfessorController()
 
-@api_bp.route('/professor')
+@api_bp.route('/professores')
 def professor_listar():
     return jsonify(professorController.listar())
 
 
-@api_bp.route('/professor/<int:id>/turmas')
+@api_bp.route('/professor/<int:id>/relatorios')
 def professor_turmas_listar(id):
-    return jsonify(professorController.listar_turma(id))
+    return jsonify(professorController.listar_turmas(id))

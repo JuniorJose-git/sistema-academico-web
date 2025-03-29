@@ -8,9 +8,9 @@ class ProfessorController:
         return self.model.listar()
 
 
-    def listar_turma(self, id):
+    def listar_turmas(self, id):
 
-        return self.model.listar_turma(id)
+        return self.model.listar_turmas(id)
 
     def professor_get(self,id):
         return self.model.professor_get(id)

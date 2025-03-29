@@ -30,6 +30,7 @@ class professorTurma:
     periodo: str
     sala_de_aula: str
     alunos: str
+    media_notas: str
 
 @dataclass
 class professorAluno:
@@ -41,7 +42,7 @@ class ProfessorModel:
     def listar(self):
         return Professor.query.all()
 
-    def listar_turma(self, id):
+    def listar_turmas(self, id):
 
         # turma = db.session.execute(db.select(Turma).filter_by(id_professor = id)).scalars().all()
 
@@ -55,19 +56,29 @@ class ProfessorModel:
 
             alunos = []
 
+            media_notas = 0
+
             for tualuno in tu.aluno_turma:
+
+                media_notas += tualuno.nota
                 alunos.append(professorAluno(
                     id=tualuno.aluno.id,
                     nome=tualuno.aluno.nome,
                     nota=tualuno.nota,
                 ))
 
+            if len(tu.aluno_turma) != 0:
+                media_notas = format(round(media_notas / len(tu.aluno_turma), 2)).replace('.',',')
+            else:
+                media_notas = ' - '
+
             turmas.append(professorTurma(
                 id = tu.id,
                 disciplina = tu.disciplina,
                 periodo = tu.periodo,
                 sala_de_aula = tu.sala_de_aula,
-                alunos = alunos
+                alunos = alunos,
+                media_notas = media_notas 
             ))
 
         return turmas

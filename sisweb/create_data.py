@@ -578,6 +578,16 @@ def create_data_aluno_turma(app,db):
         AlunoTurma(id_aluno=1,id_turma=6,nota=45),
         AlunoTurma(id_aluno=1,id_turma=7,nota=50),
         AlunoTurma(id_aluno=1,id_turma=8,nota=56),
+        AlunoTurma(id_aluno=2,id_turma=1,nota=60),
+        AlunoTurma(id_aluno=2,id_turma=2,nota=40),
+        AlunoTurma(id_aluno=2,id_turma=3,nota=59),
+        AlunoTurma(id_aluno=2,id_turma=4,nota=59),
+        AlunoTurma(id_aluno=2,id_turma=5,nota=34),
+        AlunoTurma(id_aluno=2,id_turma=6,nota=45),
+        AlunoTurma(id_aluno=2,id_turma=7,nota=50),
+        AlunoTurma(id_aluno=2,id_turma=8,nota=56),
+        AlunoTurma(id_aluno=1,id_turma=1,nota=100),
+
 
     ]
 

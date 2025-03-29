@@ -34,7 +34,7 @@
             <!-- Header -->
             <header id="header">
               <div class="logo">
-                <a href="index.html">Sistema Acadêmico</a>
+                <a href="/professor/{{ id }}">Sistema Acadêmico</a>
               </div>
             </header>
 
@@ -51,7 +51,7 @@
                             <!--<span>AWESOME HTML5 &amp; CSS3 TEMPLATE</span>-->
                             <p>Agora você pode acessar Relatórios das turmas ministradas por você obtendo a média da turma, notas individuais e desempenho de cada aluno.</p>
                             <div class="primary-button">
-                              <a href="relatorio.html">Acesse Relatórios aqui</a>
+                              <a href="/professor/{{ id }}/relatorios">Acesse Relatórios aqui</a>
                             </div>
                           </div>
                         </div>
@@ -88,8 +88,8 @@
             <!-- Menu -->
             <nav id="menu">
               <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="relatorio.html">Relatórios</a></li>
+                <li><a href="/professor/{{ id }}">Início</a></li>
+                <li><a href="/professor/{{ id }}/relatorios">Relatórios</a></li>
                 <li><a href="gestaoAlunos.html">Gestão de Alunos</a></li>
               </ul>
             </nav>

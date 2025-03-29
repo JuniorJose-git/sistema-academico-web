@@ -12,7 +12,7 @@
     <title>Ramayana - HTML5 Template</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
 <!--
 Ramayana CSS Template
@@ -20,9 +20,9 @@ https://templatemo.com/tm-529-ramayana
 -->
 
     <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="../static/assets/css/fontawesome.css">
-    <link rel="stylesheet" href="../static/assets/css/templatemo-style.css">
-    <link rel="stylesheet" href="../static/assets/css/owl.css">
+    <link rel="stylesheet" href="../../static/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="../../static/assets/css/templatemo-style.css">
+    <link rel="stylesheet" href="../../static/assets/css/owl.css">
 
   </head>
 
@@ -38,7 +38,7 @@ https://templatemo.com/tm-529-ramayana
             <!-- Header -->
             <header id="header">
               <div class="logo">
-                <a href="index.html">Sistema Acadêmico</a>
+                <a href="/professor/{{ id }}">Sistema Acadêmico</a>
               </div>
             </header>
 
@@ -48,7 +48,7 @@ https://templatemo.com/tm-529-ramayana
                 <div class="row">
                   <div class="col-md-12">
                     <h1>Shortcodes Page</h1>
-                    <p><strong>Ramayana</strong> is free Bootstrap 4 CSS template from templatemo website. You can feel free to use it. Donec mattis tincidunt ipsum vel efficitur. Aliquam aliquam interdum rhoncus. Nam nec condimentum dolor, et pharetra nisi. In feugiat felis nec erat eleifend condimentum. Aliquam egestas convallis eros sed gravida. Curabitur consequat sit amet neque ac ornare.</p>
+                    <p></p>
                   </div>
                 </div>
               </div>
@@ -63,7 +63,7 @@ https://templatemo.com/tm-529-ramayana
                       <h2>Tables</h2>
                     </div>
                     <div class="default-table">
-                      <table>
+                      <!-- <table>
                         <thead>
                           <tr>
                             <th></th>
@@ -134,6 +134,33 @@ https://templatemo.com/tm-529-ramayana
                             </tr>
                           </thead>
                         </tbody>
+                      </table> -->
+
+                      <table>
+                        <thead>
+                          <tr>
+                            <td>Disciplina</td>
+                            <td>Matéria</td>
+                            <td>Periodos</td>
+                            <td>Inicio do Periodo</td>
+                            <td>Fim do Periodo</td>
+                            <td>Total de Alunos</td>
+                            <td>Média de Notas dos Alunos</td>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for turma in turmas %}
+                          <tr>
+                            <td>{{ turma.disciplina.nome }}</td>
+                            <td>{{ turma.disciplina.materia.nome }}</td>
+                            <td>{{ turma.periodo.numero_periodo}} º</td>
+                            <td>{{ turma.periodo.data_inicio.strftime('%Y/%m/%d') }}</td>
+                            <td>{{ turma.periodo.data_fim.strftime('%Y/%m/%d') }}</td>
+                            <td>{{ turma.alunos |length}}</td>
+                            <td>{{ turma.media_notas }}</td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
                       </table>
                   </div>
                 </div>
@@ -165,10 +192,10 @@ https://templatemo.com/tm-529-ramayana
 
             <div class="top-section">
               <div class="profile-image">
-                  <img src="../static/assets/images//wilson.jpg" alt="Acadêmico">
+                  <img src="../../static/assets/images//wilson.jpg" alt="Acadêmico">
               </div>
               <div class="profile-content">
-                <h3 class="profile-title">Wilson Sanches</h3>
+                <h3 class="profile-title">{{ professor.nome }}</h3>
                 <p class="profile-description">Sistema Acadêmico</p>
               </div>
           </div>
@@ -176,8 +203,8 @@ https://templatemo.com/tm-529-ramayana
             <!-- Menu -->
             <nav id="menu">
               <ul>
-                <li><a href="index.html">Início</a></li>
-                <li><a href="#">Relatórios</a></li>
+                <li><a href="/professor/{{ id }}">Início</a></li>
+                <li><a href="/professor/{{ id }}/relatorios">Relatórios</a></li>
                 <li><a href="gestaoAlunos.html">Gestão de Alunos</a></li>
                 </li>
               </ul>
@@ -190,15 +217,15 @@ https://templatemo.com/tm-529-ramayana
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-    <script src="../static/vendor/jquery/jquery.min.js"></script>
-    <script src="../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../static/vendor/jquery/jquery.min.js"></script>
+    <script src="../../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../static/assets/js/browser.min.js"></script>
-    <script src="../static/assets/js/breakpoints.min.js"></script>
-    <script src="../static/assets/js/transition.js"></script>
-    <script src="../static/assets/js/owl-carousel.js"></script>
-    <script src="../static/assets/js/custom.js"></script>
-    <script src="../static/js/script.js"></script>
+    <script src="../../static/assets/js/browser.min.js"></script>
+    <script src="../../static/assets/js/breakpoints.min.js"></script>
+    <script src="../../static/assets/js/transition.js"></script>
+    <script src="../../static/assets/js/owl-carousel.js"></script>
+    <script src="../../static/assets/js/custom.js"></script>
+    <script src="../../static/js/script.js"></script>
 </body>
 
 
