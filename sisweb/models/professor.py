@@ -23,6 +23,19 @@ class Professor(db.Model):
 
     turma = db.relationship("Turma",back_populates="professor")
 
+@dataclass
+class professorTurma:
+    id: int
+    disciplina: str 
+    periodo: str
+    sala_de_aula: str
+    alunos: str
+
+@dataclass
+class professorAluno:
+    id: int
+    nome: str
+    nota: int
 
 class ProfessorModel:
     def listar(self):
@@ -30,11 +43,34 @@ class ProfessorModel:
 
     def listar_turma(self, id):
 
-        turma = db.session.execute(db.select(Professor.turma).filter_by(id = id))
+        # turma = db.session.execute(db.select(Turma).filter_by(id_professor = id)).scalars().all()
 
-        print(turma)
+        # print(turma[0].aluno_turma.)
 
-        return db.get_or_404(Professor, id)
+        professor = db.session.execute(db.select(Professor).filter_by(id = id)).scalars().first()
+
+        turmas = []
+
+        for tu in professor.turma:
+
+            alunos = []
+
+            for tualuno in tu.aluno_turma:
+                alunos.append(professorAluno(
+                    id=tualuno.aluno.id,
+                    nome=tualuno.aluno.nome,
+                    nota=tualuno.nota,
+                ))
+
+            turmas.append(professorTurma(
+                id = tu.id,
+                disciplina = tu.disciplina,
+                periodo = tu.periodo,
+                sala_de_aula = tu.sala_de_aula,
+                alunos = alunos
+            ))
+
+        return turmas
 
     def professor_get(self,id):
         return db.get_or_404(Professor, id)
