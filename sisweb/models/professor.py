@@ -83,5 +83,76 @@ class ProfessorModel:
 
         return turmas
 
+    def listar_turmas_ano(self, id, id_ano):
+
+        # turma = db.session.execute(db.select(Turma).filter_by(id_professor = id)).scalars().all()
+
+        # print(turma[0].aluno_turma.)
+
+        professor = db.session.execute(db.select(Professor).filter_by(id = id)).scalars().first()
+
+        turmas = []
+
+        for tu in professor.turma:
+
+            alunos = []
+
+            media_notas = 0
+
+            print(id_ano)
+
+
+            if tu.periodo.ano_escolar.id == int(id_ano):
+                for tualuno in tu.aluno_turma:
+
+                    media_notas += tualuno.nota
+                    alunos.append(professorAluno(
+                        id=tualuno.aluno.id,
+                        nome=tualuno.aluno.nome,
+                        nota=tualuno.nota,
+                    ))
+
+
+                if len(tu.aluno_turma) != 0:
+                    media_notas = format(round(media_notas / len(tu.aluno_turma), 2)).replace('.',',')
+                else:
+                    media_notas = ' - '
+
+                turmas.append(professorTurma(
+                    id = tu.id,
+                    disciplina = tu.disciplina,
+                    periodo = tu.periodo,
+                    sala_de_aula = tu.sala_de_aula,
+                    alunos = alunos,
+                    media_notas = media_notas 
+                ))
+
+
+
+        return turmas
+    
+
     def professor_get(self,id):
         return db.get_or_404(Professor, id)
+
+
+    def get_ano_escolar(self, id):
+
+        professor = db.session.execute(db.select(Professor).filter_by(id = id)).scalars().first()
+
+        anos_escolar = []
+
+        anos_escolar.append(professor.turma[0].periodo.ano_escolar)
+
+        for turma in professor.turma:
+            for a in anos_escolar:
+                if a.id != turma.periodo.ano_escolar.id:
+                    anos_escolar.append(turma.periodo.ano_escolar)
+
+
+        return anos_escolar
+
+    
+
+
+
