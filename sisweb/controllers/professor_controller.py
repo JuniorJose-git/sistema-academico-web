@@ -19,3 +19,6 @@ class ProfessorController:
 
     def get_ano_escolar(self, id):
         return self.model.get_ano_escolar(id)
+
+    def get_turma(self,id, id_turma):
+        return self.model.get_turma(id, id_turma)

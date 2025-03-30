@@ -45,8 +45,11 @@ https://templatemo.com/tm-529-ramayana
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-12">
-                <h1>Shortcodes Page</h1>
-                <p></p>
+                <h1>{{ turma.nome }}</h1>
+                <p>Disciplina: {{ turma.disciplina.nome }}: {{ turma.disciplina.descricao }}</p>
+                <p>Matéria: {{ turma.disciplina.materia.nome }}: {{ turma.disciplina.materia.descricao }}</p>
+                <p>Periodo: {{ turma.periodo.numero_periodo }}º</p>
+                <p>Média de notas: {{ turma.media_notas }}</p>
               </div>
             </div>
           </div>
@@ -60,59 +63,31 @@ https://templatemo.com/tm-529-ramayana
                 <div class="section-heading">
                 </div>
 
-                <form id="contact" action="/professor/{{ id }}/relatorios" method="post">
-                  <label for="ano">Ano Escolar</label>
-                  <select name="ano" id="ano">
-                    {% for ano in anos_escolar %}
-                    {% if id_ano == ano.id %}
-                    <option value="{{ ano.id }}" selected>{{ ano.nome }}</option>
-                    {% else %}
-                    <option value="{{ ano.id }}">{{ ano.nome }}</option>
-                    {% endif %}
-                    {% endfor %}
-                  </select>
-                  <button style="cursor: pointer;" type="submit" id="form-submit" class="button">Aplicar</button>
-                </form>
               </div>
             </div>
           </div>
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-12">
-                <div class="section-heading">
-                  <h2>Turmas</h2>
+                <div class="section-heading" style="display: flex; justify-content: space-between;">
+                  <h2>Alunos</h2>
+                  <form id="voltar" action="/professor/{{ id }}/relatorios" method="get">
+                    <button style="cursor: pointer;" type="submit" id="form-submit" class="button">Voltar</button>
+                  </form>
                 </div>
                 <div class="default-table">
                   <table>
                     <thead>
                       <tr>
-                        <td>Disciplina</td>
-                        <td>Matéria</td>
-                        <td>Turma</td>
-                        <td>Periodo</td>
-                        <td>Inicio do Periodo</td>
-                        <td>Fim do Periodo</td>
-                        <td>Total de Alunos</td>
-                        <td>Média de Notas dos Alunos</td>
-                        <td>Ação</td>
+                        <td>Nome</td>
+                        <td>Nota</td>
                       </tr>
                     </thead>
                     <tbody>
-                      {% for turma in turmas %}
+                      {% for aluno in turma.alunos %}
                       <tr>
-                        <td>{{ turma.disciplina.nome }}</td>
-                        <td>{{ turma.disciplina.materia.nome }}</td>
-                        <td>{{ turma.nome }}</td>
-                        <td>{{ turma.periodo.numero_periodo}} º</td>
-                        <td>{{ turma.periodo.data_inicio.strftime('%Y/%m/%d') }}</td>
-                        <td>{{ turma.periodo.data_fim.strftime('%Y/%m/%d') }}</td>
-                        <td>{{ turma.alunos |length}}</td>
-                        <td>{{ turma.media_notas }}</td>
-                        <td>
-                          <form action="/professor/{{ id }}/{{ turma.id }}" method="get">
-                            <button style="cursor: pointer;" type="submit" id="form-submit" class="button">ver</button>
-                          </form>
-                        </td>
+                        <td>{{ aluno.nome }}</td>
+                        <td>{{ aluno.nota }}</td>
                       </tr>
                       {% endfor %}
                     </tbody>

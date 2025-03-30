@@ -19,3 +19,7 @@ def professor_turmas_listar(id):
 @api_bp.route('/professor/<int:id>')
 def professor_get_ano_escolar(id):
     return jsonify(professorController.get_ano_escolar(id))
+
+@api_bp.route('/professor/<int:id>/<int:tid>')
+def professor_get_turma(id,tid):
+    return jsonify(professorController.get_turma(id,tid))

@@ -5,6 +5,8 @@ from dataclasses import dataclass
 class Turma (db.Model):
     __tablename__ = "turma"
     id: int = db.Column(db.Integer, primary_key=True)
+
+    nome: str  = db.Column(db.String(100), nullable=False)
     
     id_disciplina: int = db.Column(db.ForeignKey("disciplina.id"), nullable=False)
 

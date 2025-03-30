@@ -27,8 +27,6 @@ def professor_relatorios(id):
 
     anos_escolar = professorController.get_ano_escolar(id)
 
-    print(turmas)
-
     return render_template('relatorio.html', professor=prof,id=id,turmas=turmas,anos_escolar=anos_escolar)
 
 
@@ -44,3 +42,13 @@ def professor_relatorios_post(id):
     turmas = professorController.listar_turmas_ano(id,id_ano)
 
     return render_template('relatorio.html', professor=prof,id=id,turmas=turmas,anos_escolar=anos_escolar,id_ano=int(id_ano))
+
+
+@main_bp.route('/professor/<int:id>/<int:tid>')
+def professor_get_turma(id,tid):
+
+    prof = professorController.professor_get(id)
+
+    turma = professorController.get_turma(id, tid)
+    
+    return render_template('turma.html', professor=prof, id=id, turma=turma)

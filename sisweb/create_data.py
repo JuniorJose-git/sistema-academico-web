@@ -491,6 +491,7 @@ def create_data_turma(app, db):
         for i, materia in enumerate(materias):
             for j, disciplina in enumerate(materia.disciplina):
                 x.append(Turma(
+                    nome = 'Turma ' + str(i + 1),
                     id_disciplina=disciplina.id,
                     id_professor=(i+1),
                     id_sala_de_aula=salas[i % len(salas)].id,
@@ -499,6 +500,7 @@ def create_data_turma(app, db):
                 
 
     x.append(Turma(
+        nome = 'Turma ' + str(2),
         id_disciplina=1,
         id_professor=1,
         id_sala_de_aula=1,

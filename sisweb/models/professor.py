@@ -26,6 +26,7 @@ class Professor(db.Model):
 @dataclass
 class professorTurma:
     id: int
+    nome: str
     disciplina: str 
     periodo: str
     sala_de_aula: str
@@ -74,6 +75,7 @@ class ProfessorModel:
 
             turmas.append(professorTurma(
                 id = tu.id,
+                nome= tu.nome,
                 disciplina = tu.disciplina,
                 periodo = tu.periodo,
                 sala_de_aula = tu.sala_de_aula,
@@ -99,8 +101,6 @@ class ProfessorModel:
 
             media_notas = 0
 
-            print(id_ano)
-
 
             if tu.periodo.ano_escolar.id == int(id_ano):
                 for tualuno in tu.aluno_turma:
@@ -120,14 +120,13 @@ class ProfessorModel:
 
                 turmas.append(professorTurma(
                     id = tu.id,
+                    nome= tu.nome,
                     disciplina = tu.disciplina,
                     periodo = tu.periodo,
                     sala_de_aula = tu.sala_de_aula,
                     alunos = alunos,
                     media_notas = media_notas 
                 ))
-
-
 
         return turmas
     
@@ -152,7 +151,42 @@ class ProfessorModel:
 
         return anos_escolar
 
-    
+    def get_turma(self, id, id_turma):
+
+        professor = db.session.execute(db.select(Professor).filter_by(id = int(id))).scalars().first()
+        
+        turma = [turma for turma in professor.turma if turma.id == int(id_turma)]
+
+        turma = turma[0]
+        alunos = []
+
+        media_notas = 0
+
+        for tualuno in turma.aluno_turma:
+
+            media_notas += tualuno.nota
+            alunos.append(professorAluno(
+                id=tualuno.aluno.id,
+               nome=tualuno.aluno.nome,
+                nota=tualuno.nota,
+            ))
+
+        if len(turma.aluno_turma) != 0:
+            media_notas = format(round(media_notas / len(turma.aluno_turma), 2)).replace('.',',')
+        else:
+            media_notas = ' - '
+
+
+        result = professorTurma(
+                    id = turma.id,
+                    nome= turma.nome,
+                    disciplina = turma.disciplina,
+                    periodo = turma.periodo,
+                    sala_de_aula = turma.sala_de_aula,
+                    alunos = alunos,
+                    media_notas = media_notas)
+
+        return result
 
 
 
