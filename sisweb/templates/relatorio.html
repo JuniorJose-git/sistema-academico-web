@@ -1,234 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 
-  <head>
+<head>
 
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
-    <title>Ramayana - HTML5 Template</title>
+  <title>Relatório</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap core CSS -->
+  <link href="../../static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
-<!--
+  <!--
 Ramayana CSS Template
 https://templatemo.com/tm-529-ramayana
 -->
 
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="../../static/assets/css/fontawesome.css">
-    <link rel="stylesheet" href="../../static/assets/css/templatemo-style.css">
-    <link rel="stylesheet" href="../../static/assets/css/owl.css">
+  <!-- Additional CSS Files -->
+  <link rel="stylesheet" href="../../static/assets/css/fontawesome.css">
+  <link rel="stylesheet" href="../../static/assets/css/templatemo-style.css">
+  <link rel="stylesheet" href="../../static/assets/css/owl.css">
 
-  </head>
+</head>
 
 <body class="is-preload">
 
-    <!-- Wrapper -->
-    <div id="wrapper">
+  <!-- Wrapper -->
+  <div id="wrapper">
 
-      <!-- Main -->
-        <div id="main">
-          <div class="inner">
+    <!-- Main -->
+    <div id="main">
+      <div class="inner">
 
-            <!-- Header -->
-            <header id="header">
-              <div class="logo">
-                <a href="/professor/{{ id }}">Sistema Acadêmico</a>
+        <!-- Header -->
+        <header id="header">
+          <div class="logo">
+            <a href="/professor/{{ id }}">Sistema Acadêmico</a>
+          </div>
+        </header>
+
+        <!-- Page Heading -->
+        <div class="page-heading">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <h1>Shortcodes Page</h1>
+                <p></p>
               </div>
-            </header>
+            </div>
+          </div>
+        </div>
 
-            <!-- Page Heading -->
-            <div class="page-heading">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-12">
-                    <h1>Shortcodes Page</h1>
-                    <p></p>
-                  </div>
+        <!-- Tables -->
+        <section class="tables">
+          <div class="forms">
+            <div class="container-fluid">
+              <div class="col-md-3">
+                <div class="section-heading">
+                </div>
+
+                <form id="contact" action="/professor/{{ id }}/relatorios" method="post">
+                  <label for="ano">Ano Escolar</label>
+                  <select name="ano" id="ano">
+                    {% for ano in anos_escolar %}
+                    {% if id_ano == ano.id %}
+                    <option value="{{ ano.id }}" selected>{{ ano.nome }}</option>
+                    {% else %}
+                    <option value="{{ ano.id }}">{{ ano.nome }}</option>
+                    {% endif %}
+                    {% endfor %}
+                  </select>
+                  <button type="submit" id="form-submit" class="button">Aplicar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="section-heading">
+                  <h2>Tables</h2>
+                </div>
+                <div class="default-table">
+                  <table>
+                    <thead>
+                      <tr>
+                        <td>Disciplina</td>
+                        <td>Matéria</td>
+                        <td>Periodos</td>
+                        <td>Inicio do Periodo</td>
+                        <td>Fim do Periodo</td>
+                        <td>Total de Alunos</td>
+                        <td>Média de Notas dos Alunos</td>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for turma in turmas %}
+                      <tr>
+                        <td>{{ turma.disciplina.nome }}</td>
+                        <td>{{ turma.disciplina.materia.nome }}</td>
+                        <td>{{ turma.periodo.numero_periodo}} º</td>
+                        <td>{{ turma.periodo.data_inicio.strftime('%Y/%m/%d') }}</td>
+                        <td>{{ turma.periodo.data_fim.strftime('%Y/%m/%d') }}</td>
+                        <td>{{ turma.alunos |length}}</td>
+                        <td>{{ turma.media_notas }}</td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                  <!-- <ul class="table-pagination">
+                    <li><a href="#">Previous</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">...</a></li>
+                    <li class="active"><a href="#">8</a></li>
+                    <li><a href="#">9</a></li>
+                    <li><a href="#">Next</a></li>
+                  </ul> -->
                 </div>
               </div>
             </div>
-
-            <!-- Tables -->
-            <section class="tables">
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-md-12">
-                    <div class="section-heading">
-                      <h2>Tables</h2>
-                    </div>
-                    <div class="default-table">
-                      <!-- <table>
-                        <thead>
-                          <tr>
-                            <th></th>
-                            <th></th>
-                            <th>1°Bimestre</th>
-                          </tr>
-                        </thead>
-                        <thead>
-                          <tr>
-                            <th>Ano</th>
-                            <th>Turma</th>
-                            <th>Média da Turma</th>
-                            <th>Média Final</th>
-                            <th>Ação</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <td>Turma A</td>
-                            <td>Lorem ipsum dolor sit amet</td>
-                            <td>85</td>
-                            <td>85</td>
-                            <td>
-                              <button type="button" class="button red">excluir</button>
-                          </td>
-                          </tr>
-                          <tr>
-                            <td>#1012</td>
-                            <td>Lorem ipsum dolor sit amet</td>
-                            <td>$20.50</td>
-                            <td>$20.50</td>
-                            <td>
-                              <button type="button" class="button red">excluir</button>
-                          </td>
-                          </tr>
-                          <tr>
-                            <td>#1013</td>
-                            <td>Lorem ipsum dolor sit amet</td>
-                            <td>$20.50</td>
-                            <td>$20.50</td>
-                            <td>
-                              <button type="button" class="button red">excluir</button>
-                          </td>
-                          </tr>
-                          <tr>
-                            <td>#1014</td>
-                            <td>Lorem ipsum dolor sit amet</td>
-                            <td>$20.50</td>
-                            <td>$20.50</td>
-                            <td>
-                              <button type="button" class="button red">excluir</button>
-                          </td>
-                          </tr>
-                          <tr>
-                            <td>#1015</td>
-                            <td>Lorem ipsum dolor sit amet</td>
-                            <td>$20.50</td>
-                            <td>$20.50</td>
-                            <td>
-                              <button type="button" class="button red">excluir</button>
-                          </td>
-                          </tr>
-                          <thead>
-                            <tr>
-                              <th>TOTAL</th>
-                              <th></th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                        </tbody>
-                      </table> -->
-
-                      <table>
-                        <thead>
-                          <tr>
-                            <td>Disciplina</td>
-                            <td>Matéria</td>
-                            <td>Periodos</td>
-                            <td>Inicio do Periodo</td>
-                            <td>Fim do Periodo</td>
-                            <td>Total de Alunos</td>
-                            <td>Média de Notas dos Alunos</td>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {% for turma in turmas %}
-                          <tr>
-                            <td>{{ turma.disciplina.nome }}</td>
-                            <td>{{ turma.disciplina.materia.nome }}</td>
-                            <td>{{ turma.periodo.numero_periodo}} º</td>
-                            <td>{{ turma.periodo.data_inicio.strftime('%Y/%m/%d') }}</td>
-                            <td>{{ turma.periodo.data_fim.strftime('%Y/%m/%d') }}</td>
-                            <td>{{ turma.alunos |length}}</td>
-                            <td>{{ turma.media_notas }}</td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
-                      </table>
-                  </div>
-                </div>
-              </div>
-            </section>
-
-            <!-- <div class="col-md-6 col-sm-12">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="filled-rectangle-button">
-                    <a href="#">Gerar Relatório</a>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-              <footer id="footer">
-                <p class="copyright">Todos os direitos reservados a Sistema Acadêmico</p>
-              </footer>
-          </div>
-        </div>
-
-
-
-
-      <!-- Sidebar -->
-        <div id="sidebar">
-
-          <div class="inner">
-
-            <div class="top-section">
-              <div class="profile-image">
-                  <img src="../../static/assets/images//wilson.jpg" alt="Acadêmico">
-              </div>
-              <div class="profile-content">
-                <h3 class="profile-title">{{ professor.nome }}</h3>
-                <p class="profile-description">Sistema Acadêmico</p>
-              </div>
-          </div>
-              
-            <!-- Menu -->
-            <nav id="menu">
-              <ul>
-                <li><a href="/professor/{{ id }}">Início</a></li>
-                <li><a href="/professor/{{ id }}/relatorios">Relatórios</a></li>
-                <li><a href="gestaoAlunos.html">Gestão de Alunos</a></li>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-
+        </section>
+        <footer id="footer">
+          <p class="copyright">Todos os direitos reservados a Sistema Acadêmico</p>
+        </footer>
+      </div>
     </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar">
+
+      <div class="inner">
+
+        <div class="top-section">
+          <div class="profile-image">
+            <img src="../../static/assets/images//wilson.jpg" alt="Acadêmico">
+          </div>
+          <div class="profile-content">
+            <h3 class="profile-title">{{ professor.nome }}</h3>
+            <p class="profile-description">Sistema Acadêmico</p>
+          </div>
+        </div>
+
+        <!-- Menu -->
+        <nav id="menu">
+          <ul>
+            <li><a href="/professor/{{ id }}">Início</a></li>
+            <li><a href="/professor/{{ id }}/relatorios">Relatórios</a></li>
+            <!-- <li><a href="gestaoAlunos.html">Gestão de Alunos</a></li> -->
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+  </div>
 
 
   <!-- Scripts -->
   <!-- Bootstrap core JavaScript -->
-    <script src="../../static/vendor/jquery/jquery.min.js"></script>
-    <script src="../../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../../static/vendor/jquery/jquery.min.js"></script>
+  <script src="../../static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <script src="../../static/assets/js/browser.min.js"></script>
-    <script src="../../static/assets/js/breakpoints.min.js"></script>
-    <script src="../../static/assets/js/transition.js"></script>
-    <script src="../../static/assets/js/owl-carousel.js"></script>
-    <script src="../../static/assets/js/custom.js"></script>
-    <script src="../../static/js/script.js"></script>
+  <script src="../../static/assets/js/browser.min.js"></script>
+  <script src="../../static/assets/js/breakpoints.min.js"></script>
+  <script src="../../static/assets/js/transition.js"></script>
+  <script src="../../static/assets/js/owl-carousel.js"></script>
+  <script src="../../static/assets/js/custom.js"></script>
+  <script src="../../static/js/script.js"></script>
 </body>
 
 
-  </body>
+</body>
 
 </html>

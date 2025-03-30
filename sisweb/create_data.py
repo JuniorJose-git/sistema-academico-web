@@ -218,7 +218,9 @@ def create_data_ano_escolar(app,db):
     from models.ano_escolar import AnoEscolar
 
     x = [
-        AnoEscolar(nome='2025',data_inicio=date(2025,1,1),data_fim=date(2025,12,31))
+        AnoEscolar(nome='2025',data_inicio=date(2025,1,1),data_fim=date(2025,12,31)),
+        AnoEscolar(nome='2024',data_inicio=date(2024,1,1),data_fim=date(2024,12,31))
+
     ]
 
     with app.app_context():
@@ -258,7 +260,10 @@ def create_data_periodo(app, db):
         Periodo(numero_periodo=2, data_inicio=date(2025, 4, 1), data_fim=date(2025, 6, 30), id_ano_escolar=1),
         Periodo(numero_periodo=3, data_inicio=date(2025, 7, 1), data_fim=date(2025, 9, 30), id_ano_escolar=1),
         Periodo(numero_periodo=4, data_inicio=date(2025, 10, 1), data_fim=date(2025, 12, 31), id_ano_escolar=1),
-
+        Periodo(numero_periodo=1, data_inicio=date(2024, 1, 1), data_fim=date(2024, 3, 31), id_ano_escolar=2),
+        Periodo(numero_periodo=2, data_inicio=date(2024, 4, 1), data_fim=date(2024, 6, 30), id_ano_escolar=2),
+        Periodo(numero_periodo=3, data_inicio=date(2024, 7, 1), data_fim=date(2024, 9, 30), id_ano_escolar=2),
+        Periodo(numero_periodo=4, data_inicio=date(2024, 10, 1), data_fim=date(2024, 12, 31), id_ano_escolar=2),
     ]
     
     with app.app_context():
@@ -492,6 +497,14 @@ def create_data_turma(app, db):
                     id_periodo=(j+1),
                 ))
                 
+
+    x.append(Turma(
+        id_disciplina=1,
+        id_professor=1,
+        id_sala_de_aula=1,
+        id_periodo=5,
+        ))
+
     with app.app_context():
         if not db.session.execute(db.select(Turma)).scalars().all():
             db.session.add_all(x)

@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, jsonify
+from flask import Blueprint, render_template, jsonify, request
 
 main_bp = Blueprint('main_bp', __name__)
 
@@ -25,4 +25,22 @@ def professor_relatorios(id):
 
     turmas = professorController.listar_turmas(id)
 
-    return render_template('relatorio.html', professor=prof,id=id,turmas=turmas)
+    anos_escolar = professorController.get_ano_escolar(id)
+
+    print(turmas)
+
+    return render_template('relatorio.html', professor=prof,id=id,turmas=turmas,anos_escolar=anos_escolar)
+
+
+@main_bp.route("/professor/<int:id>/relatorios", methods=["POST"])
+def professor_relatorios_post(id):
+
+    prof = professorController.professor_get(id)
+
+    anos_escolar = professorController.get_ano_escolar(id)
+    
+    id_ano = request.form.get('ano')
+    
+    turmas = professorController.listar_turmas_ano(id,id_ano)
+
+    return render_template('relatorio.html', professor=prof,id=id,turmas=turmas,anos_escolar=anos_escolar,id_ano=int(id_ano))
