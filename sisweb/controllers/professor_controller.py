@@ -22,3 +22,6 @@ class ProfessorController:
 
     def get_turma(self,id, id_turma):
         return self.model.get_turma(id, id_turma)
+
+    def get_professor_by_email(self,email):
+        return self.model.get_professor_by_email(email)

@@ -15,19 +15,19 @@
 
 <body>
     <main  class="container">
-        <form >
+        <form action="/professor" method="post">
             <h1>Login sistema acadêmico</h1>
             <div class="input-box">
-                <input placeholder = "Usuário" type="email">
+                <input name="email" id="email" placeholder="Usuário" type="email">
                 <i class="bx bxs-user"></i>
             </div>
            
             <div class="input-box">
-                <input placeholder = "Senha" type="password">
+                <input name="senha" id="senha" placeholder="Senha" type="password">
                 <i class="bx bxs-lock-alt"></i>
             </div>
 
-           <button class="login" style="cursor: pointer;">Entrar</button>
+           <button type="submit" class="login" style="cursor: pointer;">Entrar</button>
         </form>
     </main>
     

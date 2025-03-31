@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, jsonify, request
+from flask import Blueprint, render_template, jsonify, request, redirect
 
 main_bp = Blueprint('main_bp', __name__)
 
@@ -16,10 +16,24 @@ professorController = ProfessorController()
 def login():
     return render_template('login.html')
 
-@main_bp.route("/professor")
+@main_bp.route("/professor" , methods=["POST"])
 def login_request():
-        
-    return 'logado'
+
+    form_email = request.form.get('email')
+    form_senha = request.form.get('senha')
+
+    professor = professorController.get_professor_by_email(form_email)
+
+    if professor:
+
+        if professor.senha == str(form_senha):
+            return redirect("/professor/"+str(professor.id))
+        else:
+            return redirect('/')
+
+    else:
+        return redirect('/')
+
 
 @main_bp.route("/professor/<int:id>")
 def professor_logado(id):

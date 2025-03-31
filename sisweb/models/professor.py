@@ -187,6 +187,12 @@ class ProfessorModel:
                     media_notas = media_notas)
 
         return result
+    
+    def get_professor_by_email(self,email):
+
+        professor = db.session.execute(db.select(Professor).filter_by(email=email)).scalars().first()
+
+        return professor
 
 
 
