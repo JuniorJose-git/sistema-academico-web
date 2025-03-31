@@ -601,7 +601,7 @@ def create_data_aluno_turma(app,db):
         AlunoTurma(id_aluno=2,id_turma=6,nota=45),
         AlunoTurma(id_aluno=2,id_turma=7,nota=50),
         AlunoTurma(id_aluno=2,id_turma=8,nota=56),
-        AlunoTurma(id_aluno=1,id_turma=1,nota=100),
+        AlunoTurma(id_aluno=2,id_turma=1,nota=100),
 
 
     ]
